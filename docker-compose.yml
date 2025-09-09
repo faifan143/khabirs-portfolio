@@ -1,0 +1,37 @@
+version: "3.8"
+
+services:
+  khabir-portfolio:
+    build: .
+    container_name: khabir-portfolio
+    ports:
+      - "8080:80" # Map host port 8080 to container port 80
+    restart: unless-stopped
+    environment:
+      - TZ=Asia/Muscat
+    volumes:
+      - ./logs:/var/log/nginx # Mount logs directory for persistence
+    networks:
+      - khabir-network
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "wget",
+          "--quiet",
+          "--tries=1",
+          "--spider",
+          "http://localhost/health",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  khabir-network:
+    driver: bridge
+
+volumes:
+  logs:
+    driver: local
