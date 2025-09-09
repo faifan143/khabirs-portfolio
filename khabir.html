@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خبير للخدمات المنزلية - Khabir Home Services</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-red-500: #ef4444;
+            --primary-color: var(--color-red-500);
+            --secondary-color: #dc2626;
+            --accent-color: #f87171;
+            --text-primary: #000000;
+            --text-secondary: #374151;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f9fafb;
+            --border-color: #e5e7eb;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --text-primary: #ffffff;
+            --text-secondary: #d1d5db;
+            --bg-primary: #111827;
+            --bg-secondary: #1f2937;
+            --border-color: #374151;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--bg-primary);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 60px; /* تم زيادة الحجم من 40px إلى 60px */
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover img {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--border-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,1000 1000,800 1000,1000"/></svg>');
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .download-group {
+            text-align: right;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .download-group h3 {
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+            margin-right: 1rem;
+            margin-left: 1rem;
+        }
+
+        .app-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .btn-store {
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            min-width: 140px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .btn-store img.store-icon {
+            height: 24px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .btn-store:hover {
+            background: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* تحديث أنماط الأزرار في الهيرو سكشن */
+        .hero .app-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            align-items: flex-start;
+        }
+
+        .hero .footer-store-link {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            color: #333;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;  /* تقليل المسافة بين الأيقونة والنص */
+            transition: all 0.3s ease;
+            white-space: nowrap;  /* منع النص من الانتقال إلى السطر التالي */
+            justify-content: flex-start;
+        }
+
+        .hero .store-icon-small {
+            height: 20px;
+            width: auto;
+            margin: 0;  /* إزالة الهوامش الإضافية */
+        }
+
+        .hero .footer-store-link span {
+            display: inline-block;  /* جعل النص في نفس السطر */
+        }
+
+        .hero .footer-store-link:hover {
+            background: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+            background: var(--bg-secondary);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 3rem;
+            color: var(--text-primary);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--bg-primary);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: var(--bg-primary);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            background: var(--bg-secondary);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            padding: 60px 0 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-downloads {
+            margin-top: 1rem;
+        }
+
+        .footer-app-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-app-group h4 {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-store-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            justify-content: flex-start;
+        }
+
+        .footer-store-link:hover {
+            color: var(--primary-color);
+            transform: translateX(-4px);
+        }
+
+        .footer-store-link img {
+            height: 16px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        [dir="rtl"] .footer-store-link:hover {
+            transform: translateX(4px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        /* Add these CSS rules inside your <style> tag */
+        [dir="ltr"] .download-group {
+            text-align: left;
+        }
+
+        [dir="ltr"] .hero .app-buttons {
+            align-items: flex-start;
+        }
+
+        [dir="ltr"] .hero h3 {
+            margin-left: 1rem;
+            text-align: left;
+        }
+
+        [dir="ltr"] .hero .footer-store-link {
+            justify-content: flex-start;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Add inside your <style> tag */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: var(--bg-primary);
+            min-width: 220px;
+            box-shadow: var(--shadow-lg);
+            border-radius: 8px;
+            padding: 0.5rem;
+            z-index: 1000;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-content a:hover {
+            background: var(--bg-secondary);
+            color: var(--primary-color);
+            transform: translateX(-4px);
+        }
+
+        .store-icon {
+            height: 24px;
+            width: auto;
+            object-fit: contain;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .store-icon-small {
+            height: 20px;
+            width: auto;
+            object-fit: contain;
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0 8px;
+        }
+
+        .btn-store {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .download-group {
+                width: 100%;
+                margin: 1rem 0;
+                padding: 1.25rem;
+            }
+            
+            .app-buttons {
+                flex-direction: column;
+            }
+            
+            .dropdown-content {
+                right: 0;
+                left: auto;
+                min-width: 280px;
+            }
+            
+            .store-icon-small {
+                height: 16px;
+            }
+
+            .footer-downloads {
+                margin-top: 0.5rem;
+            }
+            
+            .footer-app-group {
+                margin-bottom: 1rem;
+            }
+            
+            .footer-store-link {
+                padding: 0.4rem 0;
+            }
+
+            .hero .footer-store-link {
+                padding: 0.5rem 1rem;
+            }
+        }
+
+        /* RTL/LTR Support */
+        [dir="ltr"] .nav-links {
+            gap: 2rem;
+        }
+
+        [dir="rtl"] .nav-links {
+            gap: 2rem;
+        }
+
+        /* RTL/LTR Support for Footer */
+        [dir="ltr"] .footer-content {
+            text-align: left;
+        }
+
+        [dir="rtl"] .footer-content {
+            text-align: right;
+        }
+
+        [dir="ltr"] .footer-section ul {
+            padding-left: 0;
+        }
+
+        [dir="rtl"] .footer-section ul {
+            padding-right: 0;
+        }
+    </style>
+</head>
+<body data-theme="light">
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <a href="#" class="logo" id="logo">
+                <img src="logo-04.png" alt="Khabir Logo" style="height: 80px; width: auto;">
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home" id="nav-home">الرئيسية</a></li>
+                <li><a href="#services" id="nav-services">الخدمات</a></li>
+                <li><a href="#features" id="nav-features">المميزات</a></li>
+                <li><a href="#contact" id="nav-contact">اتصل بنا</a></li>
+            </ul>
+            <div class="controls">
+                <button class="btn btn-secondary" id="theme-toggle">🌙</button>
+                <button class="btn btn-secondary" id="lang-toggle">EN</button>
+                <div class="dropdown">
+                    <button class="btn btn-primary" id="download-btn">تحميل التطبيق 📱</button>
+                    <div class="dropdown-content">
+                        <a href="#" class="footer-store-link">
+                            <img src="google play store icon.png" alt="Google Play" class="store-icon-small">
+                            <span id="user-android">تطبيق المستخدم - Android</span>
+                        </a>
+                        <a href="#" class="footer-store-link">
+                            <img src="apple store icon.png" alt="App Store" class="store-icon-small">
+                            <span id="user-ios">تطبيق المستخدم - iOS</span>
+                        </a>
+                        <a href="#" class="footer-store-link">
+                            <img src="google play store icon.png" alt="Google Play" class="store-icon-small">
+                            <span id="provider-android">تطبيق مزود الخدمة - Android</span>
+                        </a>
+                        <a href="#" class="footer-store-link">
+                            <img src="apple store icon.png" alt="App Store" class="store-icon-small">
+                            <span id="provider-ios">تطبيق مزود الخدمة - iOS</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1 id="hero-title">خبير للخدمات المنزلية</h1>
+                <p id="hero-subtitle">نوفر لك أفضل الخبراء للخدمات المنزلية في صحار وسلطنة عمان</p>
+                <div class="hero-buttons">
+                    <!-- Update Hero Section download buttons -->
+                    <div class="download-group">
+                        <h3 id="user-app-title">تطبيق المستخدم</h3>
+                        <div class="app-buttons">
+                            <a href="#" class="footer-store-link" style="width: 200px;">
+                                <img src="google play store icon.png" alt="Google Play" class="store-icon-small">
+                                <span id="user-android-btn">تحميل Android</span>
+                            </a>
+                            <a href="#" class="footer-store-link" style="width: 200px;">
+                                <img src="apple store icon.png" alt="App Store" class="store-icon-small">
+                                <span id="user-ios-btn">تحميل iOS</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="download-group">
+                        <h3 id="provider-app-title">تطبيق مزود الخدمة</h3>
+                        <div class="app-buttons">
+                            <a href="#" class="footer-store-link" style="width: 200px;">
+                                <img src="google play store icon.png" alt="Google Play" class="store-icon-small">
+                                <span id="provider-android-btn">تحميل Android</span>
+                            </a>
+                            <a href="#" class="footer-store-link" style="width: 200px;">
+                                <img src="apple store icon.png" alt="App Store" class="store-icon-small">
+                                <span id="provider-ios-btn">تحميل iOS</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title" id="services-title">خدماتنا</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🔧</div>
+                    <h3 id="service-1-title">إصلاحات منزلية</h3>
+                    <p id="service-1-desc">إصلاح جميع أعطال المنزل من كهرباء وسباكة وتكييف</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🧹</div>
+                    <h3 id="service-2-title">تنظيف المنازل</h3>
+                    <p id="service-2-desc">خدمة تنظيف شاملة للمنازل والمكاتب بأعلى معايير الجودة</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎨</div>
+                    <h3 id="service-3-title">دهانات وديكور</h3>
+                    <p id="service-3-desc">أعمال الدهانات والديكور لتجديد منزلك بأحدث التصاميم</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔌</div>
+                    <h3 id="service-4-title">صيانة الأجهزة</h3>
+                    <p id="service-4-desc">صيانة وإصلاح جميع الأجهزة المنزلية والكهربائية</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🪴</div>
+                    <h3 id="service-5-title">العناية بالحدائق</h3>
+                    <p id="service-5-desc">خدمات البستنة والعناية بالحدائق والنباتات المنزلية</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3 id="service-6-title">خدمات تقنية</h3>
+                    <p id="service-6-desc">تركيب وصيانة الأنظمة الذكية والتقنية في المنزل</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title" id="features-title">لماذا خبير؟</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">⚡</div>
+                    <div>
+                        <h3 id="feature-1-title">سرعة في الاستجابة</h3>
+                        <p id="feature-1-desc">نصل إليك خلال 30 دقيقة من طلب الخدمة</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">👨‍💼</div>
+                    <div>
+                        <h3 id="feature-2-title">خبراء معتمدون</h3>
+                        <p id="feature-2-desc">جميع خبرائنا مدربون ومعتمدون ولديهم خبرة واسعة</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">💰</div>
+                    <div>
+                        <h3 id="feature-3-title">أسعار تنافسية</h3>
+                        <p id="feature-3-desc">أسعار عادلة وشفافة بدون رسوم خفية</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🛡️</div>
+                    <div>
+                        <h3 id="feature-4-title">ضمان على الخدمة</h3>
+                        <p id="feature-4-desc">نضمن جودة العمل مع ضمان شامل على جميع خدماتنا</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📞</div>
+                    <div>
+                        <h3 id="feature-5-title">دعم على مدار الساعة</h3>
+                        <p id="feature-5-desc">فريق الدعم متاح 24/7 لمساعدتك في أي وقت</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">⭐</div>
+                    <div>
+                        <h3 id="feature-6-title">تقييمات موثوقة</h3>
+                        <p id="feature-6-desc">نظام تقييمات شفاف يساعدك في اختيار الخبير المناسب</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 id="footer-company">خبير للخدمات المنزلية</h3>
+                    <p id="footer-desc">نحن نقدم أفضل الخدمات المنزلية في المنطقة مع فريق من الخبراء المدربين لضمان رضاكم التام.</p>
+                </div>
+                <div class="footer-section">
+                    <h3 id="footer-services-title">الخدمات</h3>
+                    <ul>
+                        <li id="footer-service-1">إصلاحات منزلية</li>
+                        <li id="footer-service-2">تنظيف المنازل</li>
+                        <li id="footer-service-3">دهانات وديكور</li>
+                        <li id="footer-service-4">صيانة الأجهزة</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 id="footer-contact-title">تواصل معنا</h3>
+                    <ul>
+                        <li><a href="tel:+96872755990" id="footer-phone">+968 72 755 990</a></li>
+                        <li><a href="mailto:khabirservice2024@gmail.com" id="footer-email">khabirservice2024@gmail.com</a></li>
+                        <li id="footer-address">حي الرفعة، صحار، سلطنة عمان</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 id="footer-download-title">حمل التطبيق</h3>
+                    <div class="footer-downloads">
+                        <div class="footer-app-group">
+                            <h4 id="footer-app-user">تطبيق المستخدم</h4>
+                            <ul>
+                                <li>
+                                    <a href="#" class="footer-store-link">
+                                        <img src="google play store icon.png" alt="Google Play" class="store-icon-small">
+                                        <span id="footer-download-android">تحميل للأندرويد</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="footer-store-link">
+                                        <img src="apple store icon.png" alt="App Store" class="store-icon-small">
+                                        <span id="footer-download-ios">تحميل للآيفون</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="footer-app-group">
+                            <h4 id="footer-app-provider">تطبيق مزود الخدمة</h4>
+                            <ul>
+                                <li>
+                                    <a href="#" class="footer-store-link">
+                                        <img src="google play store icon.png" alt="Google Play" class="store-icon-small">
+                                        <span id="footer-download-android-provider">تحميل للأندرويد</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="footer-store-link">
+                                        <img src="apple store icon.png" alt="App Store" class="store-icon-small">
+                                        <span id="footer-download-ios-provider">تحميل للآيفون</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>
+                    <span id="footer-copyright">© 2024 خبير للخدمات المنزلية. جميع الحقوق محفوظة. | تطوير:</span>
+                    <span id="footer-dev-name" style="cursor: pointer; color: var(--primary-color);">م. عبد الغفور حاج عارف</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Translations
+        const translations = {
+            ar: {
+                'nav-home': "الرئيسية",
+                'nav-services': "الخدمات",
+                'nav-features': "المميزات",
+                'nav-contact': "اتصل بنا",
+                'user-app-title': "تطبيق المستخدم",
+                'provider-app-title': "تطبيق مزود الخدمة",
+                'download-btn': "تحميل التطبيق 📱",
+                'hero-title': "خبير للخدمات المنزلية",
+                'hero-subtitle': "نوفر لك أفضل الخبراء للخدمات المنزلية في صحار وسلطنة عمان",
+                'hero-expert': "كن خبيراً",
+                'services-title': "خدماتنا",
+                'service-1-title': "إصلاحات منزلية",
+                'service-1-desc': "إصلاح جميع أعطال المنزل من كهرباء وسباكة وتكييف",
+                'service-2-title': "تنظيف المنازل",
+                'service-2-desc': "خدمة تنظيف شاملة للمنازل والمكاتب بأعلى معايير الجودة",
+                'service-3-title': "دهانات وديكور",
+                'service-3-desc': "أعمال الدهانات والديكور لتجديد منزلك بأحدث التصاميم",
+                'service-4-title': "صيانة الأجهزة",
+                'service-4-desc': "صيانة وإصلاح جميع الأجهزة المنزلية والكهربائية",
+                'service-5-title': "العناية بالحدائق",
+                'service-5-desc': "خدمات البستنة والعناية بالحدائق والنباتات المنزلية",
+                'service-6-title': "خدمات تقنية",
+                'service-6-desc': "تركيب وصيانة الأنظمة الذكية والتقنية في المنزل",
+                
+                'features-title': "لماذا خبير؟",
+                'feature-1-title': "سرعة في الاستجابة",
+                'feature-1-desc': "نصل إليك خلال 30 دقيقة من طلب الخدمة",
+                'feature-2-title': "خبراء معتمدون",
+                'feature-2-desc': "جميع خبرائنا مدربون ومعتمدون ولديهم خبرة واسعة",
+                'feature-3-title': "أسعار تنافسية",
+                'feature-3-desc': "أسعار عادلة وشفافة بدون رسوم خفية",
+                'feature-4-title': "ضمان على الخدمة",
+                'feature-4-desc': "نضمن جودة العمل مع ضمان شامل على جميع خدماتنا",
+                'feature-5-title': "دعم على مدار الساعة",
+                'feature-5-desc': "فريق الدعم متاح 24/7 لمساعدتك في أي وقت",
+                'feature-6-title': "تقييمات موثوقة",
+                'feature-6-desc': "نظام تقييمات شفاف يساعدك في اختيار الخبير المناسب",
+
+                'footer-company': "خبير للخدمات المنزلية",
+                'footer-desc': "نحن نقدم أفضل الخدمات المنزلية في المنطقة مع فريق من الخبراء المدربين لضمان رضاكم التام.",
+                'footer-services-title': "الخدمات",
+                'footer-service-1': "إصلاحات منزلية",
+                'footer-service-2': "تنظيف المنازل",
+                'footer-service-3': "دهانات وديكور",
+                'footer-service-4': "صيانة الأجهزة",
+                'footer-contact-title': "تواصل معنا",
+                'footer-address': "حي الرفعة، صحار، سلطنة عمان",
+                'footer-download-title': "حمل التطبيق",
+                'footer-copyright': "© 2024 خبير للخدمات المنزلية. جميع الحقوق محفوظة. | تطوير:",
+                'footer-dev-name': "م. عبد الغفور حاج عارف",
+                'user-android': 'تطبيق المستخدم - Android',
+                'user-ios': 'تطبيق المستخدم - iOS',
+                'provider-android': 'تطبيق مزود الخدمة - Android',
+                'provider-ios': 'تطبيق مزود الخدمة - iOS',
+                'user-android-btn': 'تحميل Android',
+                'user-ios-btn': 'تحميل iOS',
+                'provider-android-btn': 'تحميل Android',
+                'provider-ios-btn': 'تحميل iOS',
+                'footer-app-user': 'تطبيق المستخدم',
+                'footer-app-provider': 'تطبيق مزود الخدمة',
+                'footer-download-android': 'تحميل للأندرويد',
+                'footer-download-ios': 'تحميل للآيفون',
+                'footer-download-android-provider': 'تحميل للأندرويد',
+                'footer-download-ios-provider': 'تحميل للآيفون',
+                'footer-phone': '72 755 990 968+' // تحديث تنسيق رقم الهاتف
+            },
+            en: {
+                'nav-home': "Home",
+                'nav-services': "Services",
+                'nav-features': "Features",
+                'nav-contact': "Contact",
+                'user-app-title': "User App",
+                'provider-app-title': "Service Provider App",
+                'download-btn': "Download App 📱",
+                'hero-title': "Khabir Home Services",
+                'hero-subtitle': "Find the best home service experts in Sohar and Sultanate of Oman",
+                'hero-expert': "Become an Expert",
+                'services-title': "Our Services",
+                'service-1-title': "Home Repairs",
+                'service-1-desc': "Repair all home issues including electricity, plumbing, and AC",
+                'service-2-title': "House Cleaning",
+                'service-2-desc': "Comprehensive cleaning service for homes and offices with highest quality standards",
+                'service-3-title': "Painting & Decor",
+                'service-3-desc': "Painting and decoration works to renovate your home with latest designs",
+                'service-4-title': "Appliance Maintenance",
+                'service-4-desc': "Maintenance and repair of all home and electrical appliances",
+                'service-5-title': "Garden Care",
+                'service-5-desc': "Gardening services and care for gardens and house plants",
+                'service-6-title': "Technical Services",
+                'service-6-desc': "Installation and maintenance of smart home systems and technology",
+                
+                'features-title': "Why Khabir?",
+                'feature-1-title': "Fast Response",
+                'feature-1-desc': "We reach you within 30 minutes of service request",
+                'feature-2-title': "Certified Experts",
+                'feature-2-desc': "All our experts are trained, certified and highly experienced",
+                'feature-3-title': "Competitive Prices",
+                'feature-3-desc': "Fair and transparent pricing with no hidden fees",
+                'feature-4-title': "Service Warranty",
+                'feature-4-desc': "We guarantee work quality with comprehensive warranty on all services",
+                'feature-5-title': "24/7 Support",
+                'feature-5-desc': "Support team available 24/7 to help you anytime",
+                'feature-6-title': "Trusted Ratings",
+                'feature-6-desc': "Transparent rating system helps you choose the right expert",
+
+                'footer-company': "Khabir Home Services",
+                'footer-desc': "We provide the best home services in the region with a team of trained experts to ensure your complete satisfaction.",
+                'footer-services-title': "Services",
+                'footer-service-1': "Home Repairs",
+                'footer-service-2': "House Cleaning",
+                'footer-service-3': "Painting & Decor",
+                'footer-service-4': "Appliance Maintenance",
+                'footer-contact-title': "Contact Us",
+                'footer-address': "Al Rifaa, Sohar, Sultanate of Oman",
+                'footer-download-title': "Download App",
+                'footer-copyright': "© 2024 Khabir Home Services. All rights reserved. | Developed by:",
+                'footer-dev-name': "Eng. Abd Alghafoor Haj Aref",
+                'user-android': 'User App - Android',
+                'user-ios': 'User App - iOS',
+                'provider-android': 'Provider App - Android',
+                'provider-ios': 'Provider App - iOS',
+                'user-android-btn': 'Download Android',
+                'user-ios-btn': 'Download iOS',
+                'provider-android-btn': 'Download Android',
+                'provider-ios-btn': 'Download iOS',
+                'footer-app-user': 'User App',
+                'footer-app-provider': 'Service Provider App',
+                'footer-download-android': 'Download for Android',
+                'footer-download-ios': 'Download for iOS',
+                'footer-download-android-provider': 'Download for Android',
+                'footer-download-ios-provider': 'Download for iOS',
+                'footer-phone': '+968 72 755 990'
+            }
+        };
+
+        // تشفير معلومات المطور
+        const encodedDevInfo = {
+            ar: btoa(unescape(encodeURIComponent("م. عبد الغفور حاج عارف"))),
+            en: btoa("Eng. Abd Alghafoor Haj Aref"),
+            contact: btoa("96877244369"),
+            rights: btoa("© 2024 Khabir Home Services. All rights reserved. | Developed by:")
+        };
+
+        // دالة التحقق من حقوق المطور
+        function verifyDevRights() {
+            const footerDev = document.getElementById('footer-dev-name');
+            const footerCopyright = document.getElementById('footer-copyright');
+            const currentLangDev = decodeURIComponent(escape(atob(encodedDevInfo[currentLang])));
+            
+            if (!footerDev || !footerCopyright || 
+                footerDev.textContent !== currentLangDev) {
+                console.error('Developer rights violation detected');
+                alert('This website was developed by Eng. Abd Alghafoor Haj Aref');
+                window.location.href = `https://wa.me/${atob(encodedDevInfo.contact)}`;
+                return false;
+            }
+            return true;
+        }
+
+        // State
+        let currentLang = 'ar';
+        let currentTheme = 'light';
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        themeToggle.addEventListener('click', () => {
+            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+            body.setAttribute('data-theme', currentTheme);
+            themeToggle.textContent = currentTheme === 'light' ? '🌙' : '☀️';
+        });
+
+        // Language Toggle
+        const langToggle = document.getElementById('lang-toggle');
+        const html = document.documentElement;
+
+        // تحديث دالة updateLanguage
+        function updateLanguage(lang) {
+            currentLang = lang;
+            const texts = translations[lang];
+            
+            for (const [id, text] of Object.entries(texts)) {
+                const element = document.getElementById(id);
+                if (element) {
+                    if (id === 'footer-dev-name') {
+                        element.textContent = decodeURIComponent(escape(atob(encodedDevInfo[lang])));
+                    } else {
+                        element.textContent = text;
+                    }
+                }
+            }
+
+            if (lang === 'ar') {
+                html.setAttribute('lang', 'ar');
+                html.setAttribute('dir', 'rtl');
+                langToggle.textContent = 'EN';
+            } else {
+                html.setAttribute('lang', 'en');
+                html.setAttribute('dir', 'ltr');
+                langToggle.textContent = 'عربي';
+            }
+
+            verifyDevRights();
+        }
+
+        langToggle.addEventListener('click', () => {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            updateLanguage(currentLang);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                // Skip empty or invalid hrefs
+                if (href === '#' || !href || href.length <= 1) {
+                    return;
+                }
+                
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        let lastScroll = 0;
+        const header = document.querySelector('header');
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll <= 0) {
+                header.style.transform = 'translateY(0)';
+                return;
+            }
+            
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                // Scrolling down
+                header.style.transform = 'translateY(-100%)';
+            } else if (currentScroll < lastScroll) {
+                // Scrolling up
+                header.style.transform = 'translateY(0)';
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe service cards and feature items
+        document.querySelectorAll('.service-card, .feature-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Footer service click scroll
+        document.getElementById('footer-service-1').onclick = () => {
+            document.getElementById('service-1-title').scrollIntoView({behavior: 'smooth', block: 'center'});
+        };
+        document.getElementById('footer-service-2').onclick = () => {
+            document.getElementById('service-2-title').scrollIntoView({behavior: 'smooth', block: 'center'});
+        };
+        document.getElementById('footer-service-3').onclick = () => {
+            document.getElementById('service-3-title').scrollIntoView({behavior: 'smooth', block: 'center'});
+        };
+        document.getElementById('footer-service-4').onclick = () => {
+            document.getElementById('service-4-title').scrollIntoView({behavior: 'smooth', block: 'center'});
+        };
+
+        // إظهار رقم الهاتف عند النقر على الاسم
+        document.getElementById('footer-dev-name').onclick = function() {
+            window.open('https://wa.me/96877244369', '_blank');
+        };
+
+        // Initialize
+        updateLanguage(currentLang);
+
+        // فحص دوري كل 5 ثواني
+        setInterval(verifyDevRights, 5000);
+
+        // تحديث معالج النقر على اسم المطور
+        document.getElementById('footer-dev-name').onclick = function() {
+            if (verifyDevRights()) {
+                window.open(`https://wa.me/${atob(encodedDevInfo.contact)}`, '_blank');
+            }
+        };
+
+        // منع فتح أدوات المطور
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.addEventListener('keydown', e => {
+            if (e.ctrlKey && (e.keyCode === 73 || e.keyCode === 85)) {
+                e.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>
